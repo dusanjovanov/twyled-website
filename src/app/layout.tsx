@@ -1,18 +1,29 @@
-import './globals.css'
+"use client";
+import { Provider, useSliceState } from "@/store";
+import { ThemeProvider } from "@/twyled";
+import "./globals.css";
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>
+          <Provider>
+            <Container>{children}</Container>
+          </Provider>
+        </ThemeProvider>
+      </body>
     </html>
-  )
+  );
 }
+
+const Container = ({ children }: { children: React.ReactNode }) => {
+  const theme = useSliceState("theme");
+
+  return <div className={theme}>{children}</div>;
+};

@@ -1,91 +1,178 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+"use client";
+import { Highlighter } from "@/Highlighter";
+import { ThemeButton } from "@/ThemeButton";
+import { createVariants, twyled } from "@/twyled";
+import {
+  Box,
+  Flex,
+  Header,
+  HeaderLink,
+  HeaderLinkIcon,
+  Heading1,
+  Heading2,
+  InfoBox,
+  Input,
+  Label,
+  Main,
+} from "@/ui";
+import { IconBrandGithub } from "@tabler/icons";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+    <Box h="100vh" $dark={{ bg: "slate800" }}>
+      <Header
+        bg="slate800"
+        h={50}
+        px="2"
+        gap="4"
+        borderBottom="1"
+        borderColor="slate700"
+      >
+        <Flex>
+          <HeaderLinkIcon
+            href="https://github.com/dusanjovanov/twyled"
+            gap="1"
             target="_blank"
-            rel="noopener noreferrer"
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+            <IconBrandGithub />
+            Github
+          </HeaderLinkIcon>
+        </Flex>
+        <HeaderLink href="/docs/get-started" ml="auto">
+          Docs
+        </HeaderLink>
+        <ThemeButton />
+      </Header>
+      <Main pt="8" h="calc(100vh - 50px)" overflowY="auto" mx="auto">
+        <Box textAlign="center" mb="20">
+          <Heading1
+            bg="indigo700"
+            color="green400"
+            textTransform="uppercase"
+            fontSize="6xl"
+            fontWeight="black"
+            rounded="xl"
+            mb="2"
+            w="fit-content"
+            mx="auto"
+            py="2"
+            px="4"
+          >
+            Twyled
+          </Heading1>
+          <Heading2
+            fontWeight="normal"
+            fontSize="xl"
+            p="2"
+            $dark={{ color: "white" }}
+          >
+            Styled components with Tailwind ergonomics
+          </Heading2>
+        </Box>
+        <InfoBox w="fit-content" mx="auto" mb="4">
+          🚧 Site is still under construction
+        </InfoBox>
+        <Flex mx="auto" px="8">
+          <Box flex={2}>
+            <Highlighter language="tsx">{exampleCode}</Highlighter>
+          </Box>
+          <Box flex={1} px="8">
+            <Box
+              bg="slate800"
+              color="white"
+              $dark={{ bg: "white", color: "black" }}
+              p="4"
+              rounded="lg"
+            >
+              <Heading1 fontSize="lg" mb="4">
+                Create user
+              </Heading1>
+              <Flex mb="4" gap="2">
+                <Label fontSize="sm" fontWeight="bold">
+                  Name
+                </Label>
+                <Input
+                  type="text"
+                  defaultValue="Dusan"
+                  p="2"
+                  rounded="md"
+                  border="1"
+                />
+              </Flex>
+              <Flex gap="2">
+                <ExampleButton>Create</ExampleButton>
+                <ExampleButton variant="neutral">Cancel</ExampleButton>
+              </Flex>
+            </Box>
+          </Box>
+        </Flex>
+      </Main>
+    </Box>
+  );
 }
+
+const exampleCode = `<Box
+  bg="slate800"
+  color="white"
+  $dark={{ bg: "white", color: "black" }}
+  p="4"
+  rounded="lg"
+>
+  <Title fontSize="lg" mb="4">Create user</Title>
+  <Flex mb="4" gap="2">
+    <Label fontSize="sm" fontWeight="bold">
+      Name
+    </Label>
+    <Input
+      defaultValue="Dusan"
+      p="2"
+      rounded="md"
+      border="1"
+    />
+  </Flex>
+  <Flex gap="2">
+    <Button>Create</Button>
+    <Button variant="neutral">Cancel</Button>
+  </Flex>
+</Box>`;
+
+export const ExampleButton = twyled("button", {
+  defaults: {
+    border: "0",
+    rounded: "md",
+  },
+  variants: createVariants({
+    variant: {
+      primary: {
+        bg: "blue600",
+        color: "white",
+        $hover: {
+          bg: "blue700",
+        },
+      },
+      neutral: {
+        bg: "gray200",
+        color: "black",
+        $hover: {
+          bg: "gray300",
+        },
+      },
+    },
+    size: {
+      medium: {
+        px: "2",
+        py: "1.5",
+        fontSize: "sm",
+      },
+      large: {
+        px: "2.5",
+        py: "2",
+        fontSize: "base",
+      },
+    },
+  }),
+  defaultVariants: {
+    variant: "primary",
+    size: "medium",
+  },
+});
