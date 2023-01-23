@@ -1,16 +1,7 @@
 "use client";
 import { Highlighter } from "@/Highlighter";
-import {
-  Box,
-  Button,
-  Flex,
-  InfoBox,
-  PageTitle,
-  SectionTitle,
-  Text,
-} from "@/ui";
+import { Box, InfoBox, PageTitle, SectionTitle, Text } from "@/ui";
 import { defaultColorsTheme } from "twyled";
-import { IconCopy } from "@tabler/icons";
 
 const { black, current, inherit, white, transparent, ...colors } =
   defaultColorsTheme;

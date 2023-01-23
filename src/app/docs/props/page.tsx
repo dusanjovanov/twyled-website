@@ -268,19 +268,6 @@ const BodyCell = twyled("div", {
   },
 });
 
-const List = twyled("ul", {
-  defaults: { bg: "slate200", p: "2" },
-});
-const ListItem = twyled("li", {
-  defaults: {
-    color: "white",
-    mb: "1",
-    borderBottom: "1",
-    borderColor: "slate800",
-    fontFamily: "mono",
-  },
-});
-
 const propMap = {
   colors: {
     bg: "background-color",

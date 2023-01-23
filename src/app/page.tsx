@@ -136,7 +136,7 @@ const exampleCode = `<Box
   </Flex>
 </Box>`;
 
-export const ExampleButton = twyled("button", {
+const ExampleButton = twyled("button", {
   defaults: {
     border: "0",
     rounded: "md",
